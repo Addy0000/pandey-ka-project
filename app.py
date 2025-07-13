@@ -218,7 +218,9 @@ def main():
     # Display logo and header
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
+        st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
         st.image("logo.jpg", width=200)
+        st.markdown("</div>", unsafe_allow_html=True)
         st.markdown('<h1 class="main-header">Solatic: Solar Power Maintenance Alert System</h1>', unsafe_allow_html=True)
     
     # Load or generate data
@@ -229,7 +231,10 @@ def main():
     df = st.session_state.data
     
     # Sidebar for navigation
-    st.sidebar.image("logo.jpg", width=150)
+    with st.sidebar:
+        st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
+        st.image("logo.jpg", width=150)
+        st.markdown("</div>", unsafe_allow_html=True)
     st.sidebar.title("Navigation")
     page = st.sidebar.selectbox(
         "Choose a page",
