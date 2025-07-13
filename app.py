@@ -13,8 +13,8 @@ warnings.filterwarnings('ignore')
 
 # Configure Streamlit page
 st.set_page_config(
-    page_title="Solar Power Monitoring System",
-    page_icon="☀️",
+    page_title="Solatic: Solar Power Maintance Alert System",
+    page_icon="logo.jpg",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -23,10 +23,11 @@ st.set_page_config(
 st.markdown("""
 <style>
     .main-header {
-        font-size: 3rem;
+        font-size: 2.5rem;
         font-weight: bold;
         color: #FF6B35;
         text-align: center;
+        margin-top: 1rem;
         margin-bottom: 2rem;
     }
     .metric-card {
@@ -214,7 +215,11 @@ def train_power_prediction_model(df):
     return model, mse, r2, features
 
 def main():
-    st.markdown('<h1 class="main-header">☀️ Solar Power Plant Monitoring System</h1>', unsafe_allow_html=True)
+    # Display logo and header
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.image("logo.jpg", width=200)
+        st.markdown('<h1 class="main-header">Solatic: Solar Power Maintenance Alert System</h1>', unsafe_allow_html=True)
     
     # Load or generate data
     if 'data' not in st.session_state:
@@ -224,6 +229,7 @@ def main():
     df = st.session_state.data
     
     # Sidebar for navigation
+    st.sidebar.image("logo.jpg", width=150)
     st.sidebar.title("Navigation")
     page = st.sidebar.selectbox(
         "Choose a page",
